@@ -1,0 +1,198 @@
+% Encoding: UTF-8
+% previous sisec campaigns
+@inproceedings{sassec2007,
+  title={First stereo audio source separation evaluation campaign: data, algorithms and results},
+  author={Vincent, Emmanuel and Sawada, Hiroshi and Bofill, Pau and Makino, Shoji and Rosca, Justinian P},
+  booktitle={International Conference on Independent Component Analysis and Signal Separation},
+  pages={552--559},
+  year={2007},
+  organization={Springer}
+}
+
+@inproceedings{sisec2008,
+  title={The 2008 signal separation evaluation campaign: A community-based approach to large-scale evaluation},
+  author={Vincent, Emmanuel and Araki, Shoko and Bofill, Pau},
+  booktitle={International Conference on Independent Component Analysis and Signal Separation},
+  pages={734--741},
+  year={2009},
+  organization={Springer}
+}
+
+@article{sisec0710,
+  title={The signal separation evaluation campaign (2007--2010): Achievements and remaining challenges},
+  author={Vincent, Emmanuel and Araki, Shoko and Theis, Fabian and Nolte, Guido and Bofill, Pau and Sawada, Hiroshi and Ozerov, Alexey and Gowreesunker, Vikrham and Lutter, Dominik and Duong, Ngoc QK},
+  journal={Signal Processing},
+  volume={92},
+  number={8},
+  pages={1928--1936},
+  year={2012},
+  publisher={Elsevier}
+}
+
+@Inbook{sisec2011,
+author="Araki, Shoko and Nesta, Francesco and Vincent, Emmanuel and Koldovsk{\'y}, Zbyn{\v{e}}k and Nolte, Guido and Ziehe, Andreas and Benichoux, Alexis",
+title="The 2011 Signal Separation Evaluation Campaign (SiSEC2011): - Audio Source Separation -",
+bookTitle="Latent Variable Analysis and Signal Separation: 10th International Conference, LVA/ICA 2012, Tel Aviv, Israel, March 12-15, 2012. Proceedings",
+year="2012",
+pages="414--422",
+isbn="978-3-642-28551-6",
+doi="10.1007/978-3-642-28551-6_51",
+}
+
+@INPROCEEDINGS{sisec2013,
+author={Nobutaka Ono and Koldovsk{\'y}, Zbyn{\v{e}}k and Shigeki Miyabe and Nobutaka Ito},
+booktitle={2013 IEEE International Workshop on Machine Learning for Signal Processing (MLSP)},
+title={The 2013 Signal Separation Evaluation Campaign},
+year={2013},
+doi={10.1109/MLSP.2013.6661988},
+ISSN={1551-2541},
+month={Sept},}
+
+@inproceedings{sisec2015,
+  title={The 2015 signal separation evaluation campaign},
+  author={Ono, Nobutaka and Rafii, Zafar and Kitamura, Daichi and Ito, Nobutaka and Liutkus, Antoine},
+  booktitle={International Conference on Latent Variable Analysis and Signal Separation},
+  pages={387--395},
+  year={2015},
+  organization={Springer}
+}
+
+@inproceedings{sisec2016,
+  title={The 2016 signal separation evaluation campaign},
+  author={Liutkus, Antoine and St{\"o}ter, Fabian-Robert and Rafii, Zafar and Kitamura, Daichi and Rivet, Bertrand and Ito, Nobutaka and Ono, Nobutaka and Fontecave, Julie},
+  booktitle={International Conference on Latent Variable Analysis and Signal Separation},
+  pages={323--332},
+  year={2017},
+  organization={Springer}
+}
+
+% chime
+@article{chime,
+  title={The PASCAL CHiME speech separation and recognition challenge},
+  author={Barker, Jon and Vincent, Emmanuel and Ma, Ning and Christensen, Heidi and Green, Phil},
+  journal={Computer Speech \& Language},
+  volume={27},
+  number={3},
+  pages={621--633},
+  year={2013},
+  publisher={Elsevier}
+}
+@inproceedings{chime2,
+  title={The second ‘CHiME’speech separation and recognition challenge: Datasets, tasks and baselines},
+  author={Vincent, Emmanuel and Barker, Jon and Watanabe, Shinji and Le Roux, Jonathan and Nesta, Francesco and Matassoni, Marco},
+  booktitle={Acoustics, Speech and Signal Processing (ICASSP), 2013 IEEE International Conference on},
+  pages={126--130},
+  year={2013},
+  organization={IEEE}
+}
+@inproceedings{chime3,
+  title={The third ‘CHiME’speech separation and recognition challenge: Dataset, task and baselines},
+  author={Barker, Jon and Marxer, Ricard and Vincent, Emmanuel and Watanabe, Shinji},
+  booktitle={Automatic Speech Recognition and Understanding (ASRU), 2015 IEEE Workshop on},
+  pages={504--511},
+  year={2015},
+  organization={IEEE}
+}
+
+% metrics
+@article{bssevalv3,
+  title={Performance measurement in blind audio source separation},
+  author={Vincent, Emmanuel and Gribonval, R{\'e}mi and F{\'e}votte, C{\'e}dric},
+  journal={IEEE transactions on audio, speech, and language processing},
+  volume={14},
+  number={4},
+  pages={1462--1469},
+  year={2006},
+  publisher={IEEE}
+}
+
+@article{bssevalv2,
+  title={BSS\_EVAL toolbox user guide--Revision 2.0},
+  author={F{\'e}votte, C{\'e}dric and Gribonval, R{\'e}mi and Vincent, Emmanuel},
+  year={2005}
+}
+@article{vincent2007oracle,
+  title={Oracle estimators for the benchmarking of source separation algorithms},
+  author={Vincent, Emmanuel and Gribonval, R{\'e}mi and Plumbley, Mark D},
+  journal={Signal Processing},
+  volume={87},
+  number={8},
+  pages={1933--1950},
+  year={2007},
+  publisher={Elsevier}
+}
+
+@article{peass,
+  title={Subjective and objective quality assessment of audio source separation},
+  author={Emiya, Valentin and Vincent, Emmanuel and Harlander, Niklas and Hohmann, Volker},
+  journal={IEEE Transactions on Audio, Speech, and Language Processing},
+  volume={19},
+  number={7},
+  pages={2046--2057},
+  year={2011},
+  publisher={IEEE}
+}
+
+% model
+@Article{duong10,
+  author  = {Ngoc Q. K. Duong and Emmanuel Vincent and R\'{e}mi Gribonval},
+  title   = {Under-determined reverberant audio source separation using a full-rank spatial covariance model},
+  journal = {IEEE Transactions on Audio, Speech, and Language Processing},
+  year    = {2010},
+  volume  = {18},
+  number  = {7},
+  pages   = {1830-1840},
+  month   = sep,
+}
+
+@InProceedings{liutkus15,
+  author    = {Antoine Liutkus and Roland Badeau},
+  title     = {Generalized {W}iener filtering with fractional power spectrograms},
+  booktitle = {IEEE International Conference on Acoustics, Speech and Signal Processing},
+  year      = {2015},
+  address   = {Brisbane, QLD, Australia},
+  month     = apr,
+}
+
+@inproceedings{liutkus2013,
+  title={Low bitrate informed source separation of realistic mixtures},
+  author={Liutkus, Antoine and Badeau, Roland and Richard, Ga{\"e}l},
+  booktitle={Acoustics, Speech and Signal Processing (ICASSP), 2013 IEEE International Conference on},
+  pages={66--70},
+  year={2013},
+  organization={IEEE}
+}
+
+@article{wang2005,
+  title={On ideal binary mask as the computational goal of auditory scene analysis},
+  author={Wang, DeLiang},
+  journal={Speech separation by humans and machines},
+  pages={181--197},
+  year={2005},
+  publisher={Springer}
+}
+
+% datasets
+@misc{musdb18,
+  author       = {Rafii, Zafar and
+                  Liutkus, Antoine and
+                  Fabian-Robert Stöter and
+                  Mimilakis, Stylianos Ioannis and
+                  Bittner, Rachel},
+  title        = {The {MUSDB18} corpus for music separation},
+  month        = dec,
+  year         = 2017,
+  doi          = {10.5281/zenodo.1117372},
+  url          = {https://doi.org/10.5281/zenodo.1117372}
+}
+
+@InProceedings{medleydb,
+  author    = {Rachel Bittner and Justin Salamon and Mike Tierney and Matthias Mauch and Chris Cannam and and Juan P. Bello},
+  title     = {{MedleyDB}: A Multitrack Dataset for Annotation-Intensive MIR Research},
+  booktitle = {15th International Society for Music Information Retrieval Conference},
+  year      = {2014},
+  address   = {Taipei, Taiwan},
+  month     = oct,
+}
+
+@Comment{jabref-meta: databaseType:bibtex;}

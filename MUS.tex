@@ -1,0 +1,36 @@
+%!TEX root = SiSEC2018report.tex
+
+\section{MUS: Professionally-produced music recordings}\label{sec:MUS}
+
+
+The MUS task attempts at evaluating the performance of music separation methods. In SiSEC 2015~\cite{SiSEC2015}, a new dataset was introduced for this task, comprising 100 full-track songs of different musical styles and genres, divided into development and test subsets. This year, this dataset was further heavily remastered so that for each track, it now features a set of four semi-professionally engineered stereo source images (bass, drums, vocals, and other), summing up to realistic mixtures. This corpus was called the Demixing Secret Database (DSD100), as a reference to the 'Mixing Secrets' Free Multitrack Download Library it was build from\footnote{\url{www.cambridge-mt.com/ms-mtk.htm}}. The duration of the songs ranges from 2 minutes and 22 seconds to 7 minutes and 20 seconds, with an average duration of 4 minutes and 10 seconds.
+
+Additionally, an accompanying software toolbox was developed in Matlab and Python that permits the straightforward processing of the DSD100 dataset. This software  is open source and was publicly broadcasted so as to allow the participants to run the evaluation themselves\footnote{More info at \url{github.com/faroit/dsdtools}.}.
+
+Similarly to the previous SiSEC editions, MUS was the task attracting the most participants, with 24 systems evaluated. Due to page constraints, we may not detail each method, but encourage the interested reader to refer to SiSEC'2016 website and to the references given therein.
+
+Among the systems evaluated, 10 are blind methods:
+CHA~\cite{chan15}, DUR~\cite{durrieu11}, KAM~\cite{liutkus15}, OZE~\cite{ozerov12}, RAF~\cite{rafii12,liutkus12,rafii13}, HUA~\cite{huang12}, JEO~\cite{JEO}. Then, 14 are supervised methods exploiting variants of deep neural networks: GRA~\cite{GRA}, KON~\cite{KON}, UHL~\cite{UHL}, NUG~\cite{NUG}, and the methods proposed by F.-R. St\"oter (STO), consisting of variants of~\cite{UHL,commonfate} with various representations. Finally, the evaluation also features the scores of Ideal Binary Mask (IBM), computed for left and right channels independently.
+
+Due to space constraints again, Figure~\ref{fig:MUS1} shows the box plots for the SDR of the vocals only, over the whole DSD100 dataset and excluding those few 30~s excerpts for which the IBM method was badly behaved (yielding nan values for its SDR). More results may be found online. For the first time in SiSEC, 30~s excerpts of all separated results may also be found in the webpage dedicated to the results\footnote{\url{sisec17.audiolabs-erlangen.de}}. The striking fact is that most proposed supervised systems considerably outperform blind methods, a trend that is also noticeable on other SIR, SAR metrics. Also, systems like \cite{UHL} which use additional augmentation data, seem to generalise better, resulting in a smaller gap between Dev and Test.
+
+A Friedman test revealed a significant effect of separation method on SDR (Dev: $\chi^2=1083.23, p < 0.0001$, Test: $\chi^2=1004.29, p < 0.0001$).
+Inspired by recent studies~\cite{simpsonEVAL}, we also tested for each pair of method whether the difference in performance was significant. A post-hoc pairwise comparison test (Wilcoxon signed-rank test, two-tailed, Bonferroni corrected) is depicted in Figure~\ref{fig:MUS2}.
+
+From these pair-wise comparisons, it turns out that state-of-the art music separation systems ought to feature multichannel modelling (introduced in NUG) and data augmentation (UHL). As depicted by the best scores obtained by UHL3, performing a fusion of different systems is also a promising idea.
+
+\begin{figure*}[htbp]
+  \begin{center}
+    %\includegraphics[width=1.02\linewidth]{fig/vocalsSDR_filtered.pdf}
+  \end{center}
+  \caption{Results for the SDR of vocals on MUS task for Dev and Test.}%
+\label{fig:MUS1}
+\end{figure*}
+
+\begin{figure*}[htbp]
+  \begin{center}
+    %\includegraphics[width=0.7\linewidth]{fig/wilcox_vox_sdr_filtered.pdf}
+  \end{center}
+  \caption{P-values of Pair-wise difference of Wilcoxon signed-rank test of SDR vocals over method. (upper triangle: Test, lower triangle: Dev). Values $p > 0.05$ indicate no significant differences between the two group results.}
+\label{fig:MUS2}
+\end{figure*}

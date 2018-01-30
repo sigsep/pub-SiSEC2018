@@ -1,0 +1,12 @@
+%!TEX root = SiSEC2018report.tex
+
+\section{ASY:asynchronous recordings of speech mixtures}\label{sec:ASY}
+
+\subsection{Introduction and motivations}
+Asynchronous recording is a new interesting task of source separation, for which the multichannel observation is obtained by multiple independent recording devices. This has a wide range of applications using portable recording devices as smartphones and IC recorders.
+The main differences from the conventional synchronous multichannel recording are unknown time offset and drift. The former, the time offset, is caused by the difference of the recording start time for each of the recording devices. The latter, the drift, is the difference of the lengths of the sample times caused by small biases of the independent A/D converters. Although typical sampling frequency mismatch is below 100 ppm (=0.01\%), the drift is particularly serious in the source separation because the time differences of arrival (TDOAs) of the sources changes according to the time. Therefore, a drift-robust separation scheme is indispensable in this task. Also, there are various issues in asynchronous source separation, such as differences of microphone properties and distributed positioning of the microphones.
+
+\subsection{Dataset and evaluation}
+The difficulty to evaluate the source separation performance of the real asynchronous recording is in how to generate the reference under the existence of the drift. Although the accurate reference sound can be made easily by loudspeaker playback, the reproduction of the same drift is not a simple problem. To equalize the drifts in the mixture and the reference, we used a time marking. Assuming that the drift occurs with the constant rates of the sampling frequency mismatches without jitter, the mixture and the reference have exactly the same change of the time when they have the same time offsets. A chirp signal is played back from a loudspeaker for the time marking, and the time offsets of the mixture and the reference are aligned by equalizing the times when the chirp signals are recorded. Since the distortion of the sums of the references from the real observations is smaller than 30 dB in our data, the constant drift model ignoring jitter is sufficient for the evaluation of the source separation.
+
+\subsection{Results and discussion}

@@ -1,0 +1,127 @@
+\begin{thebibliography}{10}
+
+\bibitem{sisec2011}
+Shoko Araki, Francesco Nesta, Emmanuel Vincent, Zbyn{\v{e}}k Koldovsk{\'y},
+  Guido Nolte, Andreas Ziehe, and Alexis Benichoux.
+\newblock {\em The 2011 Signal Separation Evaluation Campaign (SiSEC2011): -
+  Audio Source Separation -}, pages 414--422.
+\newblock 2012.
+
+\bibitem{chime3}
+Jon Barker, Ricard Marxer, Emmanuel Vincent, and Shinji Watanabe.
+\newblock The third ‘chime’speech separation and recognition challenge:
+  Dataset, task and baselines.
+\newblock In {\em Automatic Speech Recognition and Understanding (ASRU), 2015
+  IEEE Workshop on}, pages 504--511. IEEE, 2015.
+
+\bibitem{chime}
+Jon Barker, Emmanuel Vincent, Ning Ma, Heidi Christensen, and Phil Green.
+\newblock The pascal chime speech separation and recognition challenge.
+\newblock {\em Computer Speech \& Language}, 27(3):621--633, 2013.
+
+\bibitem{medleydb}
+Rachel Bittner, Justin Salamon, Mike Tierney, Matthias Mauch, Chris Cannam, ,
+  and Juan~P. Bello.
+\newblock {MedleyDB}: A multitrack dataset for annotation-intensive mir
+  research.
+\newblock In {\em 15th International Society for Music Information Retrieval
+  Conference}, Taipei, Taiwan, October 2014.
+
+\bibitem{duong10}
+Ngoc Q.~K. Duong, Emmanuel Vincent, and R\'{e}mi Gribonval.
+\newblock Under-determined reverberant audio source separation using a
+  full-rank spatial covariance model.
+\newblock {\em IEEE Transactions on Audio, Speech, and Language Processing},
+  18(7):1830--1840, September 2010.
+
+\bibitem{bssevalv2}
+C{\'e}dric F{\'e}votte, R{\'e}mi Gribonval, and Emmanuel Vincent.
+\newblock Bss\_eval toolbox user guide--revision 2.0.
+\newblock 2005.
+
+\bibitem{liutkus15}
+Antoine Liutkus and Roland Badeau.
+\newblock Generalized {W}iener filtering with fractional power spectrograms.
+\newblock In {\em IEEE International Conference on Acoustics, Speech and Signal
+  Processing}, Brisbane, QLD, Australia, April 2015.
+
+\bibitem{liutkus2013}
+Antoine Liutkus, Roland Badeau, and Ga{\"e}l Richard.
+\newblock Low bitrate informed source separation of realistic mixtures.
+\newblock In {\em Acoustics, Speech and Signal Processing (ICASSP), 2013 IEEE
+  International Conference on}, pages 66--70. IEEE, 2013.
+
+\bibitem{sisec2016}
+Antoine Liutkus, Fabian-Robert St{\"o}ter, Zafar Rafii, Daichi Kitamura,
+  Bertrand Rivet, Nobutaka Ito, Nobutaka Ono, and Julie Fontecave.
+\newblock The 2016 signal separation evaluation campaign.
+\newblock In {\em International Conference on Latent Variable Analysis and
+  Signal Separation}, pages 323--332. Springer, 2017.
+
+\bibitem{sisec2013}
+Nobutaka Ono, Zbyn{\v{e}}k Koldovsk{\'y}, Shigeki Miyabe, and Nobutaka Ito.
+\newblock The 2013 signal separation evaluation campaign.
+\newblock In {\em 2013 IEEE International Workshop on Machine Learning for
+  Signal Processing (MLSP)}, Sept 2013.
+
+\bibitem{sisec2015}
+Nobutaka Ono, Zafar Rafii, Daichi Kitamura, Nobutaka Ito, and Antoine Liutkus.
+\newblock The 2015 signal separation evaluation campaign.
+\newblock In {\em International Conference on Latent Variable Analysis and
+  Signal Separation}, pages 387--395. Springer, 2015.
+
+\bibitem{musdb18}
+Zafar Rafii, Antoine Liutkus, Fabian-Robert Stöter, Stylianos~Ioannis
+  Mimilakis, and Rachel Bittner.
+\newblock The {MUSDB18} corpus for music separation, December 2017.
+
+\bibitem{sisec2008}
+Emmanuel Vincent, Shoko Araki, and Pau Bofill.
+\newblock The 2008 signal separation evaluation campaign: A community-based
+  approach to large-scale evaluation.
+\newblock In {\em International Conference on Independent Component Analysis
+  and Signal Separation}, pages 734--741. Springer, 2009.
+
+\bibitem{sisec0710}
+Emmanuel Vincent, Shoko Araki, Fabian Theis, Guido Nolte, Pau Bofill, Hiroshi
+  Sawada, Alexey Ozerov, Vikrham Gowreesunker, Dominik Lutter, and Ngoc~QK
+  Duong.
+\newblock The signal separation evaluation campaign (2007--2010): Achievements
+  and remaining challenges.
+\newblock {\em Signal Processing}, 92(8):1928--1936, 2012.
+
+\bibitem{chime2}
+Emmanuel Vincent, Jon Barker, Shinji Watanabe, Jonathan Le~Roux, Francesco
+  Nesta, and Marco Matassoni.
+\newblock The second ‘chime’speech separation and recognition challenge:
+  Datasets, tasks and baselines.
+\newblock In {\em Acoustics, Speech and Signal Processing (ICASSP), 2013 IEEE
+  International Conference on}, pages 126--130. IEEE, 2013.
+
+\bibitem{bssevalv3}
+Emmanuel Vincent, R{\'e}mi Gribonval, and C{\'e}dric F{\'e}votte.
+\newblock Performance measurement in blind audio source separation.
+\newblock {\em IEEE transactions on audio, speech, and language processing},
+  14(4):1462--1469, 2006.
+
+\bibitem{vincent2007oracle}
+Emmanuel Vincent, R{\'e}mi Gribonval, and Mark~D Plumbley.
+\newblock Oracle estimators for the benchmarking of source separation
+  algorithms.
+\newblock {\em Signal Processing}, 87(8):1933--1950, 2007.
+
+\bibitem{sassec2007}
+Emmanuel Vincent, Hiroshi Sawada, Pau Bofill, Shoji Makino, and Justinian~P
+  Rosca.
+\newblock First stereo audio source separation evaluation campaign: data,
+  algorithms and results.
+\newblock In {\em International Conference on Independent Component Analysis
+  and Signal Separation}, pages 552--559. Springer, 2007.
+
+\bibitem{wang2005}
+DeLiang Wang.
+\newblock On ideal binary mask as the computational goal of auditory scene
+  analysis.
+\newblock {\em Speech separation by humans and machines}, pages 181--197, 2005.
+
+\end{thebibliography}
