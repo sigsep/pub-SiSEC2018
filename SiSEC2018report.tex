@@ -34,7 +34,7 @@ NTT Communication Science Laboratories, NTT Corporation, Japan
 %
 \vspace{-3mm}
 \begin{abstract}
-This paper reports the organization and results for the 2018 community-based Signal Separation Evaluation Campaign (SiSEC 2018). This year's edition was focused on audio and pursued the effort towards scaling up and making it easier to prototype audio separation software in an era of machine-learning based systems. For this purpose, open-source software was developed and released to automatically load, process and report performance on the new MUSDB'18 music separation database. Additionally, a new official Python~3 version for the \texttt{BSS~Eval} toolbox was released, along with reference implementations for three oracle separation methods: ideal binary mask, ideal ratio mask, and multichannel Wiener filter.
+This paper reports the organization and results for the 2018 community-based Signal Separation Evaluation Campaign (SiSEC 2018). This year's edition was focused on audio and pursued the effort towards scaling up and making it easier to prototype audio separation software in an era of machine-learning based systems. For this purpose, open-source software was developed and released to automatically load, process and report performance on the new MUSDB'18 music separation database. Additionally, a new official Python version for the \texttt{BSS~Eval} toolbox was released, along with reference implementations for three oracle separation methods: ideal binary mask, ideal ratio mask, and multichannel Wiener filter.
 \end{abstract}
 
 \setcounter{footnote}{0}
@@ -42,7 +42,7 @@ This paper reports the organization and results for the 2018 community-based Sig
 \vspace{-2mm}
 Source separation is a signal processing problem that consists in recovering individual superimposed \textit{sources} from a \textit{mixture}.  Since 2008, the role of the Signal Separation Evaluation Campaign (SiSEC) has been to compare performance of separation systems on a volontary and community-based basis, by defining tasks, datasets and metrics to evaluate methods~\cite{sassec2007,sisec2008,sisec0710,sisec2011,sisec2013,sisec2015,sisec2016}. Although source separation may find applications in several domains, the focus of SiSEC has always mostly been on audio source separation, with tasks pertaining to both speech and music separation.
 
-This year, we decided to drop the legacy speech separation and denoising tasks UND and BGN, because they are now the core focus of very large and successful other campaigns such as CHiME~\cite{chime,chime2,chime3}. Instead, most of our efforts were spent on music separation, where the SiSEC MUS task is playing an important role, both in terms of datasets and participation.
+This year, we decided to drop the legacy speech separation and denoising tasks UND and BGN, because they are now the core focus of very large and successful other campaigns such as CHiME~\cite{chime,chime2,chime3}. Instead, most of our efforts were spent on music separation, where the SiSEC MUS task is playing an important role, both in terms of datasets and participation. We also maintained the ASY task of asynchronous separation, due to its originality and adequation with the objectives of SiSEC.
 
 
 %\begin{figure*}[t]
@@ -56,11 +56,13 @@ This year, we decided to drop the legacy speech separation and denoising tasks U
 
 While the primary objective of SiSEC is to regularly report on the progress made by the community through standardized evaluations, its secondary objective is also to provide useful resources for research in source separation, even outside the scope of the campaign itself. This explains why the SiSEC data has always been made public, so that it could be used for related publications. %Over the years, it has a moderate, but significant impact on the audio research, as seen on Figure~\ref{fig:SiSEC_pub}.
 
-Since 2015, the scope of the SiSEC MUS data was significantly widened, so that it could serve not only for evaluation, but also for the design of separation system. This important shift in the purpose of the SiSEC data is motivated by the important development of systems based on deep learning, which now define the state-of-the-art and require important amounts of learning data. This lead to the proposal of the MSD~\cite{sisec2015} and the DSD100~\cite{sisec2016} datasets, that were used in the previous two SiSEC.
+Since 2015, the scope of the SiSEC MUS data was significantly widened, so that it could serve not only for evaluation, but also for the design of music separation system. This important shift in the purpose of the SiSEC data is motivated by the recent development of systems based on deep learning, which now define the state-of-the-art and require important amounts of learning data. This lead to the proposal of the MSD~\cite{sisec2015} and the DSD100~\cite{sisec2016} datasets, that were used in the previous two SiSEC.
 
-This year's SiSEC present several contributions. First, the computation of oracle performance goes further than the usual Ideal Binary Mask (IBM) method to also include Ideal Ratio Mask (IRM) and Multichannel Wiener Filters (MWF). Second, we continued our effort in gathering a dataset for training music separation systems and released the MUSDB'18, that comprises almost 10~h of music with separated stems. Third, we released a new version~4 for the \texttt{BSS~Eval} toolbox, that handles time-invariant distortion filters, significantly speeding up computations. Fourth, we provide the community with plotting tools to be used for quickly reporting the performance of new systems. Pointers to open-source implementations in Python~3 for all these contributions may be found in the SiSEC website\footnote{\url{sisec.inria.fr}.}.
+This year's SiSEC present several contributions. First, the computation of oracle performance goes further than the usual Ideal Binary Mask (IBM) method to also include Ideal Ratio Mask (IRM) and Multichannel Wiener Filters (MWF). Second, we continued our effort in gathering a dataset for training music separation systems and released the MUSDB'18, that comprises almost 10~h of music with separated stems. Third, we released a new version~4 for the \texttt{BSS~Eval} toolbox, that handles time-invariant distortion filters, significantly speeding up computations. Pointers to open-source implementations in Python for all these contributions may be found in the SiSEC website\footnote{\url{sisec.inria.fr}.}.
 
 \section{Oracle performance for audio separation}
+\label{sec:oracle}
+
 We write $I$ as he number of channels of the audio mixture: $I=2$ for stereo. We write $x$ for the 3-dimensional complex array obtained by stacking the Short-Time Frequency Transforms (STFT) of all channels. Its dimensions are $F\times T\times I$, where $F,T$ stand for the number of frequency bands and time frames, respectively. Its values at Time-Frequency (TF) bin $\ft$ are  written $x\ft\in\mathbb{C}^I$, with entries $x_i\ft$. The mixture is taken as the sum of the sources \textit{images}: $x\ft=\sum_j y_j\ft$, which correspond to the isolated instruments and are also multichannel.
 
 A filtering method $\sboxed{m}$ usually computes estimates $\hat{y}_j^{\sboxed{m}}$ for the source images linearly from $x$:
@@ -71,24 +73,24 @@ where $\thet{m}$ are some parameters specific to $\sboxed{m}$ and $M_j\ftt{m}$ i
 
 For evaluation purposes, it is useful to know how good a filtering strategy can get, i.e. to have some upper bound on its performance, which is what an \textit{oracle} is~\cite{vincent2007oracle}:
 \begin{equation}
-  \thet{m}^{\star}=\underset{\thet{m}}{\text{argmin}}\sum_{f,t}\left\Vert y_{j}\ft-\hat{y}_{j}^{\sboxed{m}}\ftt{m}\right\Vert,
+  \thet{m}^{\star}=\underset{\thet{m}}{\text{argmin}}\sum_{f,t,j}\left\Vert y_{j}\ft-\hat{y}_{j}^{\sboxed{m}}\ftt{m}\right\Vert,
   \end{equation}
 where $\Vert\cdot\Vert$ is any norm deemed appropriate. In this SiSEC, we covered the three most commonly used filtering strategies, and assessed performance of their respective oracles:
 \begin{enumerate}
-  \item The \textbf{Ideal Binary Mask} (IBM,~\cite{wang2005}) is arguably the simplest filtering method. It processes all $\left(f,t,i\right)$ of the mixture independently and simply assigns each of them to one source only:   $M_{ij}^\sboxed{IBM}\ft\in\left\{0,1\right\}$. Its oracle performance is obtained if the source with strongest magnitude is picked each time.
-  \item The \textbf{Ideal Ratio Mask} (IRM), also called the $\alpha$-Wiener filter~\cite{liutkus15}, relaxes the binary nature of the IBM. It processes all $\left(f,t,i\right)$ through multiplication by $M_{ij}^\sboxed{irm}\in\left[0,1\right]$ defined as:
+  \item The \textbf{Ideal Binary Mask} (\textit{IBM},~\cite{wang2005}) is arguably the simplest filtering method. It processes all $\left(f,t,i\right)$ of the mixture independently and simply assigns each of them to one source only:   $M_{ij}^\sboxed{IBM}\ft\in\left\{0,1\right\}$. Its oracle performance is obtained if the source with strongest magnitude is picked each time.
+  \item The \textbf{Ideal Ratio Mask} (IRM), also called the $\alpha$-Wiener filter~\cite{liutkus15}, relaxes the binary nature of the IBM. It processes all $\left(f,t,i\right)$ through multiplication by $M_{ij}^\sboxed{IRM}\in\left[0,1\right]$ defined as:
   \begin{equation}
     M^{\sboxed{IRM}}_{ij}\ft=\frac{v_{ij}\ft}{\sum_{j'}v_{ij'}\ft},
   \end{equation}
-where $v_{ij}\ft=\left|y_{ij}\ft\right|^\alpha$ is the fractional power spectrogram of the source image $y_{ij}$. Particular cases include the Wiener filter for $\alpha=2$.
-  \item The \textbf{Multichannel Wiener Filter} (MWF, \cite{duong10}) exploits multichannel information, while IBM and IRM do not. $M^{\sboxed{MWF}}_{j}\ft$ is a $I\times I$ complex matrix given by:
+where $v_{ij}\ft=\left|y_{ij}\ft\right|^\alpha$ is the fractional power spectrogram of the source image $y_{ij}$. Particular cases include the \textit{IRM2} Wiener filter for $\alpha=2$ and the \textit{IRM1} magnitude ratio mask for $\alpha=1$.
+  \item The \textbf{Multichannel Wiener Filter} (\textit{MWF}, \cite{duong10}) exploits multichannel information, while IBM and IRM do not. $M^{\sboxed{MWF}}_{j}\ft$ is a $I\times I$ complex matrix given by:
   \begin{equation}
-    M_{j}^{\sboxed{MWF}}\ft=C_{j}\ft C_{x}\ft,
+    M_{j}^{\sboxed{MWF}}\ft=C_{j}\ft C_{x}^{-1}\ft,
   \end{equation}
 where $C_j\ft$ is the $I\times I$ covariance matrix for source $j$ at TF bin $\ft$ and $C_x=\sum_j C_j$. In the classical local Gaussian model \cite{duong10}, the further parameterization $C_j\ft=v_j\ft R_j\left(f\right)$ is picked, with $R_j$ being the $I\times I$ \textit{spatial covariance matrix}, encoding the average correlations between channels at frequency bin $f$, and $v_j\ft\geq0$ encoding the power spectral density at $\ft$. The optimal values for these parameters are easily computed from the true sources $y_j$ \cite{liutkus2013}.
 \end{enumerate}
 
-These three oracle systems have been implemented in Python~3 and released in an open-source license\footnote{\url{github.com/sigsep/sigsep-mus-oracle}}.
+These three oracle systems have been implemented in Python and released in an open-source license\footnote{\url{github.com/sigsep/sigsep-mus-oracle}}.
 
 \section{Data and metrics}
 
@@ -101,32 +103,63 @@ For the organization of the present SiSEC, the MUSDB18 corpus was released~\cite
 \item Many musical genres are represented in MUSDB, for example, jazz, electro, metal, etc.
 \item It is split into a development (100 tracks, 6.5~h) and a test dataset (50 tracks, 3.5~h), for the design of data-driven separation methods.
 \end{itemize}
-The dataset is freely available for download online, along with Python~3 development tools\footnote{\url{https://sigsep.github.io/musdb}}.
+The dataset is freely available for download online, along with Python development tools\footnote{\url{https://sigsep.github.io/musdb}}.
 
 \subsection{BSS Eval version~4}
+\label{ssec:bsseval-results}
+
 The BSS~Eval metrics, as implemented in the MATLAB toolboxes~\cite{bssevalv2,bssevalv3} are widely used in the audio separation literature. They quantify the discrepancies between true sources and their estimates through $3$~criteria: Source to Distortion, to Artefact, to Interference ratios (SDR, SAR, SIR) and additionally with the Image to Spatial distortion (ISR) for the \texttt{BSS~Eval v3} toolbox~\cite{bssevalv3}.
 
 One particularity of BSS~Eval is to compute the metrics after optimally matching the estimates to the true sources through linear \textit{distortion filters}. This arguably allows the criteria to be robust to some linear mismatches. Apart from the optional computation of all possible permutations of the sources, this matching is the reason for most of the computation cost of BSS~Eval, especially considering it is done for each evaluation window when the metrics are computed on a framewise basis.
 
-In this SiSEC, we decided to drop the assumption that distortion filters could be varying over time, but considered instead they are fixed for the whole length of the track. First, this significantly reduces the computational cost for evaluation because matching needs to be done only once for the whole signal. Second, this introduces much more dynamics in the evaluation, because time-varying matching filters turn out to over-estimate performance, as we show in Section~\ref{ssec:bsseval-results}. Third, this makes matching more robust, because true sources are not silent throughout the whole recording, while they often were for short windows.\footnote{We also only use the BSSeval \texttt{images} version, as defined in~\cite{bssevalv3}, because the \texttt{sources} version~\cite{bssevalv2} suffers from strong instabilities in some borderline cases such as silent estimates.}
+In this SiSEC, we decided to drop the assumption that distortion filters could be varying over time, but considered instead they are fixed for the whole length of the track. First, this significantly reduces the computational cost for evaluation because matching needs to be done only once for the whole signal. Second, this introduces much more dynamics in the evaluation, because time-varying matching filters turn out to over-estimate performance, as we show in Section~\ref{ssec:bsseval-results}. Third, this makes matching more robust, because true sources are not silent throughout the whole recording, while they often were for short windows.
 
-This new $4^{th}$ version for the \texttt{BSS~Eval} toolbox was implemented in Python~3, and allows either time-invariant or time-varying distortion filters. In the latter case, it is fully compatible with earlier MATLAB-based versions up to a tolerance of $10^-7$~dB. It may be found through classical Python~3 package manager or on the dedicated website\footnote{\texttt{pip3 install bsseval} or \url{bass-db.gforge.inria.fr/bss_eval/}}.
+This new $4^{th}$ version for the \texttt{BSS~Eval} toolbox was implemented in Python, and allows either time-invariant or time-varying distortion filters. In the latter case, it is fully compatible with earlier MATLAB-based versions up to a tolerance of $10^{-12}$~dB. It may be found through classical Python package manager or on the dedicated website\footnote{\texttt{pip install bsseval} or \url{bass-db.gforge.inria.fr/bss_eval/}}.
 
 \section{Separation results}
 \subsection{Oracle performance with \texttt{BSS Eval v4}}
 \label{ssec:bsseval-results}
+\begin{figure}[ht]
+  \begin{center}
+     \includegraphics[width=\linewidth]{fig/oracle-evaluation.pdf}
+     \vspace{-1cm}
+  \end{center}
+  \caption{BSSeval scores obtained by the 4 oracle methods considered over the MUSDB18 test set.}
+  \label{fig:oracle_bsseval}
+\end{figure}
+To the best of our knowledge, the results presented in Figure~\ref{fig:oracle_bsseval} are the first fair comparison between the different and widely used oracle systems presented in Section~\ref{sec:oracle}. On this figure, we can see boxplots of the \texttt{BSS~Eval} scores obtained by IBM, IRM1, IRM2 and MWF on the $4$~sources considered in MUSDB18. The scores were computed on 1~second windows, taken on the whole test-set of MUSDB18.
+
+The most striking fact we see on this Figure~\ref{fig:oracle_bsseval} is that IBM is \textit{not} achieving the best scores on any metric except ISR. Most particularly, we notice that IBM systematically induces a small loss in performance of a few dBs on SDR and SIR compared to soft masks for most sources, and to a significant loss for SAR, that can get as bad as around~$5$~dB for the accompaniment source. This is in line with the presence of strong \textit{musical noise} produced by IBM whenever the source to separate is \textit{dense} and cannot be assumed stronger in magnitude than all others whenever it is active. This also happens for the bass, which is usually weaker than all other sources at high frequencies, yielding significant distortion with IBM. Furthermore, we suspect the strong scores obtained by IBM in vocals and bass ISR to mostly be due to the zeroing of large amounts of frequency bands in those estimates. Indeed, zero estimates lead the projection filters of BSS~eval to totally cancel those frequencies in the reference also, artificially boosting performance.
+
+Now, comparing soft masks, it appears that IRM2 and MWF produce the best overall performance as compared to IRM1. However, this result is expected: \texttt{BSS~Eval} scores are \textit{in fine} relative to squared-error criteria, which are precisely optimised with those filters. Previous perceptual studies showed that IRM1 may be preferred in some cases~\cite{liutkus15}. This may be reflected in the slightly better performance that IRM1 obtains for SAR.
+
+
+\begin{figure}[ht]
+  \begin{center}
+     \includegraphics[width=\linewidth]{fig/evaluation_v3v4.pdf}
+     \vspace{-1cm}
+  \end{center}
+  \caption{Vocals SIR score vs vocals energy for BSS~eval v3 and v4.  }
+  \label{fig:v3v4}
+\end{figure}
+
+Concerning the discrepancies between\texttt{BSS~Eval} v3 and v4 (time-invariant distortion filters), we observe several differences. First, computations were $8$~times faster for v4 than for v3, which allowed using small $1$~s frames and thus get an estimate of the performance along time at a reasonable computing cost. Second, computing distortion filters only once for the whole duration of the signal brings an interesting side-effect that can be visualized on Figure~~\ref{fig:v3v4}.The new v4 brings a much higher dynamics for the scores: we clearly see that lower energy for the true source brings lower performance. However, the marginal distributions for the scores over the whole dataset were not statistically different between v3 and v4, which validates the use of fewer distortion filters to optimize computing time and get to similar conclusions.
+
+
+
 \subsection{Comparison of systems submitted to SiSEC-MUS 2018}
+To be completed when the results have been submitted, for the camera-ready version.
 \subsection{Comparison of systems submitted to SiSEC-ASY 2018}
 To be completed when the results have been submitted, for the camera-ready version.
 
 \section{Conclusion}
 \label{sec:concl}
 \vspace{-2mm}
-We reported our work on the organization of SiSEC 2018, that comprised the development of a new Python version~$4$ for BSS~Eval to assess performance, which is fully compatible with earlier MATLAB versions and additionally allows for time-invariant distortion filters, significantly reducing computational load. Furthermore, we presented the new MUSDB'18 dataset, that gathers 150 music tracks with isolated stems, totaling almost $10$~h of music for the design and evaluation of music separation systems. Finally, we also provide open-source implementations of~$3$ popular oracle methods to assess upper bounds for performance.
+We reported our work on the organization of SiSEC 2018, that comprised the development of a new Python version~$4$ for BSS~Eval to assess performance, that is fully compatible with earlier MATLAB versions and additionally allows for time-invariant distortion filters, significantly reducing computational load. Furthermore, we presented the new MUSDB'18 dataset, that gathers 150 music tracks with isolated stems, totaling almost $10$~h of music. Finally, we also provide open-source implementations of $3$ popular oracle methods to provide various upper bounds for performance.
 
-Then, we reported the impact of choosing time-invariant distortion filters for the new BSS~Eval~v4 over time-varying ones as done before. The discussion was conducted based on the performance of the proposed implementations for oracle methods.
+Then, we reported the impact of choosing time-invariant distortion filters for BSS~Eval over time-varying ones and quickly summarized the discrepancies in the performance of the proposed oracle methods obtained with BSS~Eval v3 and v4.
 
-Finally, we provided an overall presentation of the scores obtained by the participants to this year's edition. More detailed analysis and sound excerpts to be listened to can be accessed online on the SiSEC webpage.
+Finally, we provided an overall presentation of the scores obtained by the participants to this year's edition. More detailed analysis and sound excerpts can be accessed online on the SiSEC webpage.
 \footnotesize
 \bibliographystyle{plain}
 \bibliography{references}
