@@ -141,7 +141,7 @@ Concerning the discrepancies between\texttt{BSS~Eval} v3 and v4 (time-invariant 
 
 
 \subsection{Comparison of systems submitted to SiSEC-MUS 2018}
-This year's participation has been the strongest ever observed in the whole history of SiSEC, with exactly $30$ systems submitted in total. Due to space constraints, we cannot detail all the methods here, but reference the interested reader to the corresponding papers. They are: %2DFT \cite{2DFT}, JIY1-3 \cite{JY1}, MDL1 \cite{MDL1}, MDLT \cite{MDLT}, RGT1-2 \cite{RGT1}, RPCA \cite{RPCA}, TAK1-3 \cite{TAK1}, UHL1 \cite{UHL1}, UHL2-3 \cite{UHL2} TAU \cite{TAK1,UHL2}, HEL1 \cite{HEL1}, WK \cite{WK}, as well as all the method implemented in NUSSL \cite{NUSSL}: MELO \cite{MELO}, REP1 \cite{REP1}, REP2 \cite{REP2}, HPSS \cite{HPSS}.
+This year's participation has been the strongest ever observed in the whole history of SiSEC, with exactly $30$ systems submitted in total. Due to space constraints, we cannot detail all the methods here, but all adequate references are given online.% the interested reader to the corresponding papers. They are: 2DFT \cite{2DFT}, JIY1-3 \cite{JY1}, MDL1 \cite{MDL1}, MDLT \cite{MDLT}, RGT1-2 \cite{RGT1}, RPCA \cite{RPCA}, TAK1-3 \cite{TAK1}, UHL1 \cite{UHL1}, UHL2-3 \cite{UHL2} TAU \cite{TAK1,UHL2}, HEL1 \cite{HEL1}, WK \cite{WK}, as well as all the method implemented in NUSSL \cite{NUSSL}: MELO \cite{MELO}, REP1 \cite{REP1}, REP2 \cite{REP2}, HPSS \cite{HPSS}.
 
 
 In the first set of results depicted on Figure \ref{fig:boxplots_bsseval}, we display all the BSSeval scores for the evaluation. Inspecting these results, we immediately see that methods based on deep learnig first constitute the vast majority of submissions, and second clearly outperform the other earlier model-based methods. This fact is noticeable for most targets and metrics.
@@ -158,7 +158,7 @@ In the second set of results on Figure \ref{fig:trackwise_scores}, we display th
   \label{fig:pairwise_matrix}
 \end{figure}
 
-Finally, we display the pair-wise post-hoc Conover-Inman test on Figure \ref{fig:pairwise_matrix} to assess which methods perform significantly better than others, for both vocals and accompaniment separtion. In this plot, we notice several groups of methods. First, the "model-based methods" REP1-2, HPSS, RPCA, 2DFT are shown to perform comparably. Second, deep learning methods only exploiting MUSDB training data perform better than those. Finally, methods exploiting additional training data perform best. Remarkably, the latter do not perform significantly differently than the oracles for accompaniment separation, which suggests the problem can now be considered solved to a large extent. On the contrary, vocals separation shows room for improvement.
+Finally, we display the pair-wise post-hoc Conover-Inman test on Figure \ref{fig:pairwise_matrix} to assess which methods perform significantly better than others, for both vocals and accompaniment separation. In this plot, we notice several groups of methods. First, the "model-based methods" REP1-2, HPSS, RPCA, 2DFT are shown to perform comparably. Second, deep learning methods only exploiting MUSDB training data perform significantly better than this first group. Finally, methods exploiting additional training data perform best. Remarkably, the latter do not perform significantly differently than the oracles for accompaniment separation, which suggests the automatic karaoke problem can now be considered solved to a large extent given sufficient amounts of trainng data. On the contrary, vocals separation shows room for improvement.
 
 \begin{figure}
   \begin{center}
@@ -179,8 +179,8 @@ Finally, we display the pair-wise post-hoc Conover-Inman test on Figure \ref{fig
   \label{fig:trackwise_scores}
 \end{figure}
 
-\subsection{Comparison of systems submitted to SiSEC-ASY 2018}
-To be completed when the results have been submitted, for the camera-ready version.
+%\subsection{Comparison of systems submitted to SiSEC-ASY 2018}
+%To be completed when the results have been submitted, for the camera-ready version.
 
 \section{Conclusion}
 \label{sec:concl}
