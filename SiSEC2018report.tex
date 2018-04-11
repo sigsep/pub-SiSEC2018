@@ -77,7 +77,7 @@ For evaluation purposes, it is useful to know how good a filtering strategy can 
   \end{equation}
 where $\Vert\cdot\Vert$ is any norm deemed appropriate. In this SiSEC, we covered the three most commonly used filtering strategies, and assessed performance of their respective oracles:
 \begin{enumerate}
-  \item The \textbf{Ideal Binary Mask} (\textit{IBM},~\cite{wang2005}) is arguably the simplest filtering method. It processes all $\left(f,t,i\right)$ of the mixture independently and simply assigns each of them to one source only:   $M_{ij}^\sboxed{IBM}\ft\in\left\{0,1\right\}$. Its oracle performance is obtained if the source with strongest magnitude is picked each time.
+  \item The \textbf{Ideal Binary Mask} (\textit{IBM},~\cite{wang2005}) is arguably the simplest filtering method. It processes all $\left(f,t,i\right)$ of the mixture independently and simply assigns each of them to one source only:   $M_{ij}^\sboxed{IBM}\ft\in\left\{0,1\right\}$. The IMB1 method is defined as $M_{ij}=1$ iff source $j$ has a magnitude $\left|y_{ij}(f,t)\right|$ that is at least half the sum of all sources magnitudes. IBM2 is defined similarly with the sources power spectrograms $\left|y_{ij}(f,t)\right|^2$.
   \item The \textbf{Ideal Ratio Mask} (IRM), also called the $\alpha$-Wiener filter~\cite{liutkus15}, relaxes the binary nature of the IBM. It processes all $\left(f,t,i\right)$ through multiplication by $M_{ij}^\sboxed{IRM}\in\left[0,1\right]$ defined as:
   \begin{equation}
     M^{\sboxed{IRM}}_{ij}\ft=\frac{v_{ij}\ft}{\sum_{j'}v_{ij'}\ft},
@@ -90,7 +90,7 @@ where $v_{ij}\ft=\left|y_{ij}\ft\right|^\alpha$ is the fractional power spectrog
 where $C_j\ft$ is the $I\times I$ covariance matrix for source $j$ at TF bin $\ft$ and $C_x=\sum_j C_j$. In the classical local Gaussian model \cite{duong10}, the further parameterization $C_j\ft=v_j\ft R_j\left(f\right)$ is picked, with $R_j$ being the $I\times I$ \textit{spatial covariance matrix}, encoding the average correlations between channels at frequency bin $f$, and $v_j\ft\geq0$ encoding the power spectral density at $\ft$. The optimal values for these parameters are easily computed from the true sources $y_j$ \cite{liutkus2013}.
 \end{enumerate}
 
-These three oracle systems have been implemented in Python and released in an open-source license\footnote{\url{github.com/sigsep/sigsep-mus-oracle}}.
+These five oracle systems IBM1, IBM2, IRM1, IRM2, MWF have been implemented in Python and released in an open-source license\footnote{\url{github.com/sigsep/sigsep-mus-oracle}}.
 
 \section{Data and metrics}
 
@@ -119,24 +119,17 @@ This new $4^{th}$ version for the \texttt{BSS~Eval} toolbox was implemented in P
 \section{Separation results}
 \subsection{Oracle performance with \texttt{BSS Eval v4}}
 \label{ssec:bsseval-results}
-\begin{figure}[ht]
-  \begin{center}
-     \includegraphics[width=\linewidth]{fig/oracle-evaluation.pdf}
-     \vspace{-1cm}
-  \end{center}
-  \caption{BSSeval scores obtained by the 4 oracle methods considered over the MUSDB18 test set.}
-  \label{fig:oracle_bsseval}
-\end{figure}
-To the best of our knowledge, the results presented in Figure~\ref{fig:oracle_bsseval} are the first fair comparison between the different and widely used oracle systems presented in Section~\ref{sec:oracle}. On this figure, we can see boxplots of the \texttt{BSS~Eval} scores obtained by IBM, IRM1, IRM2 and MWF on the $4$~sources considered in MUSDB18. The scores were computed on 1~second windows, taken on the whole test-set of MUSDB18.
 
-The most striking fact we see on this Figure~\ref{fig:oracle_bsseval} is that IBM is \textit{not} achieving the best scores on any metric except ISR. Most particularly, we notice that IBM systematically induces a small loss in performance of a few dBs on SDR and SIR compared to soft masks for most sources, and to a significant loss for SAR, that can get as bad as around~$5$~dB for the accompaniment source. This is in line with the presence of strong \textit{musical noise} produced by IBM whenever the source to separate is \textit{dense} and cannot be assumed stronger in magnitude than all others whenever it is active. This also happens for the bass, which is usually weaker than all other sources at high frequencies, yielding significant distortion with IBM. Furthermore, we suspect the strong scores obtained by IBM in vocals and bass ISR to mostly be due to the zeroing of large amounts of frequency bands in those estimates. Indeed, zero estimates lead the projection filters of BSS~eval to totally cancel those frequencies in the reference also, artificially boosting performance.
+To the best of our knowledge, the results presented in Figure~\ref{fig:boxplots_bsseval} are the first fair comparison between the different and widely used oracle systems presented in Section~\ref{sec:oracle}. On this figure, we can see boxplots of the \texttt{BSS~Eval} scores obtained by IBM1, IBM2, IRM1, IRM2 and MWF on the $4$~sources considered in MUSDB18. The scores were computed on 1~second windows, taken on the whole test-set of MUSDB18.
 
-Now, comparing soft masks, it appears that IRM2 and MWF produce the best overall performance as compared to IRM1. However, this result is expected: \texttt{BSS~Eval} scores are \textit{in fine} relative to squared-error criteria, which are precisely optimised with those filters. Previous perceptual studies showed that IRM1 may be preferred in some cases~\cite{liutkus15}. This may be reflected in the slightly better performance that IRM1 obtains for SAR.
+The most striking fact we see on this Figure~\ref{fig:boxplots_bsseval} is that IBM is \textit{not} achieving the best scores on any metric except ISR. Most particularly, we notice that IBM systematically induces a small loss in performance of a few dBs on SDR and SIR compared to soft masks for most sources, and to a significant loss for SAR, that can get as bad as around~$5$~dB for the accompaniment source. This is in line with the presence of strong \textit{musical noise} produced by IBM whenever the source to separate is \textit{dense} and cannot be assumed stronger in magnitude or energy than all others whenever it is active. This also happens for the bass, which is usually weaker than all other sources at high frequencies, yielding significant distortion with IBM. Furthermore, we suspect the strong scores obtained by IBM in vocals and bass ISR to mostly be due to the zeroing of large amounts of frequency bands in those estimates. Indeed, zero estimates lead the projection filters of BSS~eval to totally cancel those frequencies in the reference also, artificially boosting performance.
+
+Now, comparing soft masks, it appears that IRM2 and MWF produce the best overall performance as compared to IRM1. However, this result is expected: \texttt{BSS~Eval} scores are \textit{in fine} relative to squared-error criteria, which are precisely optimised with those filters. Previous perceptual studies showed that IRM1 may be preferred in some cases~\cite{liutkus15}. This may be reflected in the slightly better performance that IRM1 obtains for SAR. Finally, although IRM2 seems slightly better than MWF for most metrics, we highlight that it also comes with twice as many parameters, since it requires an estimate for the sources power spectral densities $v_{ij}$ for all channels, while WMF requires only one such estimate, shared across channels.
 
 
 \begin{figure}[ht]
   \begin{center}
-     \includegraphics[width=\linewidth]{fig/evaluation_v3v4.pdf}
+     \includegraphics[width=0.7\linewidth]{fig/evaluation_v3v4.pdf}
      \vspace{-1cm}
   \end{center}
   \caption{Vocals SIR score vs vocals energy for BSS~eval v3 and v4.  }
@@ -148,7 +141,41 @@ Concerning the discrepancies between\texttt{BSS~Eval} v3 and v4 (time-invariant 
 
 
 \subsection{Comparison of systems submitted to SiSEC-MUS 2018}
-To be completed when the results have been submitted, for the camera-ready version.
+This year's participation has been the strongest ever observed in the whole history of SiSEC, with exactly $30$ systems submitted in total. Due to space constraints, we cannot detail all the methods here, but reference the interested reader to the corresponding papers. They are: 2DFT \cite{2DFT}, JIY1-3 \cite{JY1}, MDL1 \cite{MDL1}, MDLT \cite{MDLT}, RGT1-2 \cite{RGT1}, RPCA \cite{RPCA}, TAK1-3 \cite{TAK1}, UHL1 \cite{UHL1}, UHL2-3 \cite{UHL2} TAU \cite{TAK1,UHL2}, HEL1 \cite{HEL1}, WK \cite{WK}, as well as all the method implemented in NUSSL \cite{NUSSL}: MELO \cite{MELO}, REP1 \cite{REP1}, REP2 \cite{REP2}, HPSS \cite{HPSS}.
+
+\begin{figure}[ht]
+  \begin{center}
+     \includegraphics[width=\linewidth]{fig/oracle-evaluation.pdf}
+     \vspace{-1cm}
+  \end{center}
+  \caption{BSSeval scores obtained by the 4 oracle methods considered over the MUSDB18 test set.}
+  \label{fig:boxplots_bsseval}
+\end{figure}
+
+In the first set of results depicted on Figure \ref{fig:boxplots_bsseval}, we display all the BSSeval scores for the evaluation. Inspecting these results, we immediately see that methods based on deep learnig first constitute the vast majority of submissions, and second clearly outperform the other earlier model-based methods. This fact is noticeable for most targets and metrics.
+
+\begin{figure}[ht]
+  \begin{center}
+     \includegraphics[width=\linewidth]{fig/oracle-evaluation.pdf}
+     \vspace{-1cm}
+  \end{center}
+  \caption{BSSeval scores obtained by the 4 oracle methods considered over the MUSDB18 test set.}
+  \label{fig:trackwise_scores}
+\end{figure}
+
+In the second set of results on Figure \ref{fig:trackwise_scores}, we display the track-wise average SDR score for all methods on the vocals and accompaniment targets. The striking fact we highlight there is that some methods (UHL*, TA*) do perform comparably to the oracles for approximately half of the tracks. After inspection, it turns out that room for improvement mostly lies in tracks featuring significant amounts of distortion in either the vocals or the accompaniment.
+
+\begin{figure}[ht]
+  \begin{center}
+     \includegraphics[width=\linewidth]{fig/oracle-evaluation.pdf}
+     \vspace{-1cm}
+  \end{center}
+  \caption{BSSeval scores obtained by the 4 oracle methods considered over the MUSDB18 test set.}
+  \label{fig:pairwise_matrix}
+\end{figure}
+
+Finally, we display the pair-wise post-hoc Conover-Inman test on Figure \ref{fig:pairwise_matrix} to assess which methods perform significantly better than others, for both vocals and accompaniment separtion. In this plot, we notice several groups of methods. First, the "model-based methods" REP1-2, HPSS, RPCA, 2DFT are shown to perform comparably. Second, deep learning methods only exploiting MUSDB training data perform better than those. Finally, methods exploiting additional training data perform best. Remarkably, the latter do not perform significantly differently than the oracles for accompaniment separation, which suggests the problem can now be considered solved to a large extent. On the contrary, vocals separation shows room for improvement.
+
 \subsection{Comparison of systems submitted to SiSEC-ASY 2018}
 To be completed when the results have been submitted, for the camera-ready version.
 
