@@ -151,18 +151,18 @@ In the second set of results on Figure \ref{fig:trackwise_scores}, we display th
 
 \begin{figure}[h]
   \begin{center}
-     \includegraphics[width=0.8\linewidth]{results/pairwise.png}
+     \includegraphics[width=1\linewidth]{fig/pairwise.pdf}
      \vspace{-1cm}
   \end{center}
   \caption{Pair-wise statistical significance of the differences between separation quality.}
   \label{fig:pairwise_matrix}
 \end{figure}
 
-Finally, we display the pair-wise post-hoc Conover-Inman test on Figure \ref{fig:pairwise_matrix} to assess which methods perform significantly better than others, for both vocals and accompaniment separation. In this plot, we notice several groups of methods. First, the "model-based methods" REP1-2, HPSS, RPCA, 2DFT are shown to perform comparably. Second, deep learning methods only exploiting MUSDB training data perform significantly better than this first group. Finally, methods exploiting additional training data perform best. Remarkably, the latter do not perform significantly differently than the oracles for accompaniment separation, which suggests the automatic karaoke problem can now be considered solved to a large extent given sufficient amounts of trainng data. On the contrary, vocals separation shows room for improvement.
+Finally, we display the pair-wise post-hoc Conover-Inman test on Figure \ref{fig:pairwise_matrix} to assess which methods perform significantly better than others, for both vocals and accompaniment separation. In this plot, we notice several groups of methods. First, the "model-based methods" REP1-2, HPSS, RPCA, 2DFT are shown to perform comparably. Second, deep learning methods only exploiting MUSDB training data perform significantly better than this first group. Finally, methods exploiting additional training data perform best. Remarkably, the latter do not perform significantly differently than the oracles for accompaniment separation, which suggests the automatic karaoke problem can now be considered solved to a large extent given sufficient amounts of training data. On the contrary, vocals separation shows room for improvement.
 
 \begin{figure}
   \begin{center}
-     \includegraphics[width=\linewidth]{results/boxplot_all.png}
+     \includegraphics[width=\linewidth]{fig/boxplot.pdf}
      \vspace{-1cm}
   \end{center}
   \caption{Details of results for all metrics, targets and methods.}
@@ -171,8 +171,8 @@ Finally, we display the pair-wise post-hoc Conover-Inman test on Figure \ref{fig
 
 \begin{figure}
   \begin{center}
-     \includegraphics[width=\linewidth]{results/trackwise_vocals.png}
-     \includegraphics[width=\linewidth]{results/trackwise_accompaniment.png}
+     \includegraphics[width=\linewidth]{fig/heatmap_vocals.pdf}
+     % \includegraphics[width=\linewidth]{results/trackwise_accompaniment.png}
      \vspace{-1cm}
   \end{center}
   \caption{Vocals (top) and accompaniment (below) SDR for all tracks and methods.}
