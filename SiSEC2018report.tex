@@ -179,8 +179,31 @@ Finally, we display the pair-wise post-hoc Conover-Inman test on Figure \ref{fig
   \label{fig:trackwise_scores}
 \end{figure}
 
-%\subsection{Comparison of systems submitted to SiSEC-ASY 2018}
+\subsection{Comparison of systems submitted to SiSEC-ASY 2018}
 %To be completed when the results have been submitted, for the camera-ready version.
+\begin{document}
+
+As shown in Table~\ref{table},
+there was one submission to the task "Asynchronous recordings of speech mixtures" by Corey {\it et al.}~\cite{Corey}.
+This method does not resample the microphone signals in order to separate them. Rather, it uses a separate time-varying two-channel Wiener filter for each synchronous pair of microphones. The remaining asynchronous microphone pairs are used to compute a speech presence probability for each source in each time-frequency bin. The speech presence information from the remote microphone pairs allows the reference recorder to separate more than two speech signals using a two-channel filter.
+
+\begin{table}
+\centering
+\caption{Result for the task "Asynchronous recordings of speech mixtures". Result by Miyabe {\it et al.} in SiSEC2015 is also shown as a reference.}
+\label{table}
+\begin{tabular}{|c|c|ccc|ccc|}\hline
+systems&criteria&\multicolumn{3}{|c|}{3src}&\multicolumn{3}{|c|}{4src}\\
+&&realmix&sumrefs&mix&realmix&sumrefs&mix\\\hline
+Corey~\cite{Corey}&SDR&$-4.0$&$-4.0$&$-4.1$&$3.1$&$2.9$&$1.7$\\
+&ISR&$-0.1$&$-0.1$&$-0.1$&$7.0$&$6.7$&$5.8$\\
+&SIR&$-2.2$&$-1.7$&$-1.9$&$5.4$&$5.0$&$2.4$\\
+&SAR&$-13.2$&$-13.1$&$-12.4$&$7.9$&$7.8$&$6.1$\\\hline
+Miyabe&SDR&6.9&6.8&10.6&4.0&3.8&3.3\\
+&ISR&11.2&11.1&15.1&8.8&8.5&7.3\\
+&SIR&11.0&10.9&14.9&6.7&6.4&6.0\\
+&SAR&11.7&11.6&15.5&7.8&7.6&7.4\\\hline
+\end{tabular}
+\end{table}
 
 \section{Conclusion}
 \label{sec:concl}
