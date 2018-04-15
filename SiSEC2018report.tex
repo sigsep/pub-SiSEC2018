@@ -1,12 +1,7 @@
-\documentclass{llncs}
+\documentclass{article}
+\usepackage[final, nonatbib]{nips_2017}
 \usepackage{amsmath,amssymb,graphicx,multirow,listings,hyperref}
-\usepackage{epstopdf}
 \usepackage{comment}
-
-
-%\makeatletter
-%\newcommand{\sboxed}[1]{\setlength{\fboxsep}{0.7pt}\fbox{\m@th$\displaystyle#1$}}
-%\makeatother
 
 \newcommand{\sboxed}[1]{\textbf{#1}}
 
@@ -20,15 +15,16 @@
 
 \begin{document}
 \title{The 2018 Signal Separation Evaluation Campaign}
-\author{
-Fabian-Robert St\"{o}ter\inst{1} \and
-Antoine Liutkus\inst{1} \and
-Nobutaka Ito\inst{2}
-}
 
-\institute{
-Inria and LIRMM, University of Montpellier, France\and
-NTT Communication Science Laboratories, NTT Corporation, Japan
+\author{
+  Fabian-Robert Stöter \\
+  Inria and LIRMM, University of Montpellier, France
+  \And
+  Antoine Liutkus \\
+  Inria and LIRMM, University of Montpellier, France
+  \And
+  Nobutaka Ito \\
+  NTT Communication Science Laboratories, NTT Corporation, Japan
 }
 
 \maketitle
@@ -41,7 +37,7 @@ This paper reports the organization and results for the 2018 community-based Sig
 \setcounter{footnote}{0}
 \section{Introduction}
 \vspace{-2mm}
-Source separation is a signal processing problem that consists in recovering individual superimposed \textit{sources} from a \textit{mixture}.  Since 2008, the role of the Signal Separation Evaluation Campaign (SiSEC) has been to compare performance of separation systems on a volontary and community-based basis, by defining tasks, datasets and metrics to evaluate methods~\cite{sassec2007,sisec2008,sisec0710,sisec2011,sisec2013,sisec2015,sisec2016}. Although source separation may find applications in several domains, the focus of SiSEC has always mostly been on audio source separation.
+Source separation is a signal processing problem that consists in recovering individual superimposed \textit{sources} from a \textit{mixture}.  Since 2008, the role of the Signal Separation Evaluation Campaign (SiSEC) has been to compare performance of separation systems on a voluntary and community-based basis, by defining tasks, datasets and metrics to evaluate methods~\cite{sassec2007,sisec2008,sisec0710,sisec2011,sisec2013,sisec2015,sisec2016}. Although source separation may find applications in several domains, the focus of SiSEC has always mostly been on audio source separation.
 
 This year, we decided to drop the legacy speech separation and denoising tasks UND and BGN, because they are now the core focus of very large and successful other campaigns such as CHiME~\cite{chime,chime2,chime3}. Instead, most of our efforts were spent on music separation, where the SiSEC MUS task is playing an important role, both in terms of datasets and participation. However, we also maintained the ASY task of asynchronous separation, due to its originality and adequation with the objectives of SiSEC.
 
