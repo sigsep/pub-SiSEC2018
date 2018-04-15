@@ -130,9 +130,10 @@ Concerning the discrepancies between\texttt{BSS~Eval} v3 and v4 (time-invariant 
 
 \subsection{Comparison of systems submitted to SiSEC-MUS 2018}
 This year's participation has been the strongest ever observed for SiSEC, with $30$ systems submitted in total. Due to space constraints, we cannot detail all the methods here, but refer the interested reader to the corresponding papers. We may distinguish three broad groups of methods, that are:
-\begin{enumerate}
+\begin{description}
   \item[Model-based] These methods exploit prior knowledge about the spectrograms of the sources to separate and do not use the MUSDB18 training data for their design. They are: MELO as described in \cite{MELO}, as well as all the method implemented in NUSSL \cite{NUSSL}: 2DFT \cite{2DFT}, RPCA \cite{RPCA}, REP1 \cite{REP1}, REP2 \cite{REP2}, HPSS \cite{HPSS}.
-  \item[No additional data] These methods are data-driven and exploit only the MUSDB18 training data for learning the models. They are: RGT1-2 \cite{RGT1}, STL, HEL1 \cite{HEL1}, MDL1 \cite{MDL1}, MDLT \cite{MDLT}, JIY1-3 \cite{JY1}, WK \cite{WK}, UHL1 \cite{UHL1}, UHL2 \cite{UHL2}.
+  \item[No additional data] These methods are data-driven and exploit only the
+  training data for MUSDB18 to learn the models. They are: RGT1-2 \cite{RGT1}, STL, HEL1 \cite{HEL1}, MDL1 \cite{MDL1}, MDLT \cite{MDLT}, JIY1-3 \cite{JY1}, WK \cite{WK}, UHL1 \cite{UHL1}, UHL2 \cite{UHL2}.
   \item[With additional data] These methods are also data-driven, and exploit additional training data on top of the MUSDB18 training set. They are: UHL3 \cite{UHL2}, TAK1-3 \cite{TAK1}, TAU \cite{TAK1,UHL2}.
 \end{enumerate}
 
@@ -150,7 +151,7 @@ In the first set of results depicted on Figure \ref{fig:boxplots_bsseval}, we di
 
 \begin{figure}
   \begin{center}
-     \includegraphics[width=\linewidth]{fig/heatmaps.pdf}
+     \includegraphics[width=0.85\linewidth]{fig/heatmaps.pdf}
      % \includegraphics[width=\linewidth]{results/trackwise_accompaniment.png}
      \vspace{-1cm}
   \end{center}
@@ -169,7 +170,7 @@ In the second set of results displayed on Figure \ref{fig:trackwise_scores}, we 
   \label{fig:pairwise_matrix}
 \end{figure}
 
-Our third round of analysis concerns the pair-wise post-hoc Conover-Inman test, displayed on Figure \ref{fig:pairwise_matrix}, to assess which methods perform significantly better than others, for both vocals and accompaniment separation. In this plot, an obvious fact is that DNN-based methods exploiting additional training data perform best. Remarkably, they do not perform significantly differently than the oracles for accompaniment separation, which suggests that the automatic karaoke problem can now be considered solved to a large extent, given sufficient amounts of training data. On the contrary, vocals separation shows room for improvement.
+Our third round of analysis concerns the pair-wise post-hoc Conover-Inman test, displayed on Figure \ref{fig:pairwise_matrix}, to assess which methods perform significantly better than others, for both vocals and accompaniment separation. In this plot, an obvious fact is that DNN-based methods exploiting additional training data perform best. Remarkably, they do not perform significantly differently than the oracles for accompaniment, suggesting that the automatic karaoke problem can now be considered solved to a large extent, given sufficient amounts of training data. On the contrary, vocals separation shows room for improvement.
 
 Concerning model-based methods, we notice they perform worse, but that among them, MELO stands above for vocal separation, while it is comparable to others for accompaniment. For DNN approaches not using additional training data, we notice different behaviours for vocals and accompaniment separation. We may summarize the results by mentioning that RGT1-2, STL and MDL1 do not behave as well as MDLT, STL1, JY1-3, WK and UHL1-2, which all behave comparably. It is noteworthy that UHL2 compares well with methods exploiting additional data for vocals separation.
 
@@ -206,7 +207,7 @@ Miyabe&SDR&6.9&6.8&10.6&4.0&3.8&3.3\\
 \vspace{-2mm}
 We reported our work on the organization of SiSEC 2018, that comprised the development of a new Python version~$4$ for BSS~Eval to assess performance, that is fully compatible with earlier MATLAB versions and additionally allows for time-invariant distortion filters, significantly reducing computational load. Furthermore, we presented the new MUSDB18 dataset, that gathers 150 music tracks with isolated stems, totaling almost $10$~h of music. Finally, we also provide open-source implementations of $3$ popular oracle methods to provide various upper bounds for performance.
 
-Then, we reported the impact of choosing time-invariant distortion filters for BSS~Eval over time-varying ones and quickly summarized the discrepancies in the performance of the proposed oracle methods obtained with BSS~Eval v3 and v4.
+Then, we reported the impact of choosing time-invariant distortion filters for BSS~Eval over time-varying ones and quickly summarized the discrepancies in the performance of the proposed oracles methods with BSS~Eval v3 and v4.
 
 Finally, we provided an overall presentation of the scores obtained by the participants to this year's edition. More detailed analysis and sound excerpts can be accessed online on the SiSEC webpage.
 \footnotesize
