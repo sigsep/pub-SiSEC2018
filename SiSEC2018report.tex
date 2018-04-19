@@ -29,14 +29,12 @@
 
 \maketitle
 %
-\vspace{-3mm}
 \begin{abstract}
 This paper reports the organization and results for the 2018 community-based Signal Separation Evaluation Campaign (SiSEC 2018). This year's edition was focused on audio and pursued the effort towards scaling up and making it easier to prototype audio separation software in an era of machine-learning based systems. For this purpose, we prepared a new music separation database: MUSDB18, featuring close to 10~h of audio. Additionally, open-source software was released to automatically load, process and report performance on MUSDB18. Furthermore, a new official Python version for the \texttt{BSS~Eval} toolbox was released, along with reference implementations for three oracle separation methods: ideal binary mask, ideal ratio mask, and multichannel Wiener filter. We finally report the results obtained by the participants.
 \end{abstract}
 
 \setcounter{footnote}{0}
 \section{Introduction}
-\vspace{-2mm}
 Source separation is a signal processing problem that consists in recovering individual superimposed \textit{sources} from a \textit{mixture}.  Since 2008, the role of the Signal Separation Evaluation Campaign (SiSEC) has been to compare performance of separation systems on a voluntary and community-based basis, by defining tasks, datasets and metrics to evaluate methods~\cite{sassec2007,sisec2008,sisec0710,sisec2011,sisec2013,sisec2015,sisec2016}. Although source separation may find applications in several domains, the focus of SiSEC has always mostly been on audio source separation.
 
 This year, we decided to drop the legacy speech separation and denoising tasks UND and BGN, because they are now the core focus of very large and successful other campaigns such as CHiME~\cite{chime,chime2,chime3}. Instead, most of our efforts were spent on music separation, where the SiSEC MUS task is playing an important role, both in terms of datasets and participation. However, we also maintained the ASY task of asynchronous separation, due to its originality and adequation with the objectives of SiSEC.
@@ -116,10 +114,9 @@ Now, comparing soft masks, it appears that IRM2 and MWF produce the best overall
 \begin{figure}[ht]
   \begin{center}
      \includegraphics[width=0.7\linewidth]{fig/evaluation_v3v4.pdf}
-     \vspace{-1cm}
   \end{center}
-  \caption{Vocals SIR score vs vocals energy for BSS~eval v3 and v4.  }
-  \label{fig:v3v4}
+  \caption{Vocals SIR score vs vocals energy for BSS~eval v3 and v4.}%
+\label{fig:v3v4}
 \end{figure}
 
 Concerning the discrepancies between\texttt{BSS~Eval} v3 and v4 (time-invariant distortion filters), we observe several differences. First, computations were $8$~times faster for v4 than for v3, which allowed using small $1$~s frames and thus get an estimate of the performance along time at a reasonable computing cost. Second, computing distortion filters only once for the whole duration of the signal brings an interesting side-effect, that can be visualized on Figure~~\ref{fig:v3v4}. The new v4 brings a much higher dynamics for the scores: we clearly see that lower energy for the true source brings lower performance. However, the marginal distributions for the scores over the whole dataset were not statistically different between v3 and v4, which validates the use of fewer distortion filters to optimize computing time and get to similar conclusions.
@@ -137,7 +134,6 @@ As may be seen, the vast majority of methods submitted this year to SiSEC MUS ar
 \begin{figure}
   \begin{center}
      \includegraphics[height=\textheight]{fig/boxplot.pdf}
-     \vspace{-0.5cm}
   \end{center}
   \caption{Details of results for all metrics, targets and methods.}
   \label{fig:boxplots_bsseval}
@@ -148,7 +144,6 @@ In the first set of results depicted on Figure \ref{fig:boxplots_bsseval}, we di
 \begin{figure}
   \begin{center}
      \includegraphics[width=0.85\linewidth]{fig/heatmaps.pdf}
-     \vspace{-1cm}
   \end{center}
   \caption{Vocals (top) and accompaniment (below) SDR for all tracks and methods.}
   \label{fig:trackwise_scores}
@@ -159,7 +154,6 @@ In the second set of results displayed on Figure \ref{fig:trackwise_scores}, we 
 \begin{figure}[h]
   \begin{center}
      \includegraphics[width=1\linewidth]{fig/pairwise.pdf}
-     \vspace{-1cm}
   \end{center}
   \caption{Pair-wise statistical significance of the differences between separation quality. Left: vocals SDR. Right: accompaniment SDR.}
   \label{fig:pairwise_matrix}
@@ -196,7 +190,6 @@ Miyabe&SDR&6.9&6.8&10.6&4.0&3.8&3.3\\
 
 \section{Conclusion}
 \label{sec:concl}
-\vspace{-2mm}
 We reported our work on the organization of SiSEC 2018, that comprised the development of a new Python version~$4$ for BSS~Eval to assess performance, that is fully compatible with earlier MATLAB versions and additionally allows for time-invariant distortion filters, significantly reducing computational load. Furthermore, we presented the new MUSDB18 dataset, that gathers 150 music tracks with isolated stems, totaling almost $10$~h of music. Finally, we also provide open-source implementations of $3$ popular oracle methods to provide various upper bounds for performance.
 
 Then, we reported the impact of choosing time-invariant distortion filters for BSS~Eval over time-varying ones and quickly summarized the discrepancies in the performance of the proposed oracles methods with BSS~Eval v3 and v4.
